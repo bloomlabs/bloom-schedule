@@ -15,7 +15,26 @@ To be written.
 To be written.
 
 ## API
-To be written.
+To be completed.
+
+#### Database connection
+We've formed a database connection in `/core/database.php` using the newer [PDO methodology](http://php.net/manual/en/book.pdo.php). It's mostly self-explanatory in the classes that have already been created, but if you'd like to explore further into database queries feel free to research-up!
+
+Below this query would fetch the entire `'bookings'` table, as an array.
+```php
+// Create MySQL database connection (/core/database.php)
+$database = Database::getFactory()->getConnection();
+
+// Create & prepare our SQL ready to execute
+$sql = "SELECT * FROM bookings";
+$query = $database->prepare($sql);
+
+// Execute our query
+$query->execute();
+
+// Fetch the result as an array
+$query->fetchAll()
+```
 
 ---
 
