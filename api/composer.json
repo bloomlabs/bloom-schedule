@@ -1,7 +1,7 @@
 {
-	"name": "bloom/meeting-room-api",
+	"name": "bloomlabs/bloom-schedule/api",
 	"type": "project",
-	"description": "Meeting Room Allocation System - API",
+	"description": "Bloom Schedule - API",
 	"homepage": "http://bloom.org.au",
 	"license": "proprietary",
 	"authors": [
@@ -24,8 +24,8 @@
     },
     "autoload": {
         "psr-4": {
-			"Bloom\\MeetingSpace\\API\\Core": "application/core/",
-			"Bloom\\MeetingSpace\\API\\Model": "application/model/"
+			"\\Bloom\\MeetingSpace\\API\\Core": "application/core/",
+			"\\Bloom\\MeetingSpace\\API\\Model": "application/model/"
         }
     }
 }
