@@ -15,14 +15,48 @@ To be written.
 To be written.
 
 ## API
-To be completed.
+The API is written as a Web 2.0 REST-style API.
+
+### Bookings
+`GET -> /booking/:id` - Return the details of the booking an id of :id
+```json
+Example with :id as 1
+
+{
+  "category": "booking",
+  "type": "booking_details",
+  "content": {
+	"booking_id": "1",
+	"booking_title": "My cool booking!",
+	"booking_author": "John Appleseed"
+  }
+}
+```
+
+... more to come.
+
+### Statistics
+`GET -> /statistics/bookings` - Return total amount of bookings managed by the system
+```json
+{
+  "category": "statistics",
+  "type": "bookings",
+  "content": {
+	"total_results": "1"
+  }
+}
+```
+
+... more to come.
+
+### Other API details
 
 #### Database connection
 We've formed a database connection in `/core/database.php` using the newer [PDO methodology](http://php.net/manual/en/book.pdo.php). It's mostly self-explanatory in the classes that have already been created, but if you'd like to explore further into database queries feel free to research-up!
 
-Below this query would fetch the entire `'bookings'` table, as an array.
+Below is a query that would fetch the entire `bookings` table as an array.
 ```php
-// Create MySQL database connection (/core/database.php)
+// Create MySQL database connection
 $database = Database::getFactory()->getConnection();
 
 // Create & prepare our SQL ready to execute
