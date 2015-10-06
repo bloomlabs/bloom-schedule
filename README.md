@@ -1,6 +1,5 @@
 # Bloom Schedule - API
 
-
 ## About
 Bloom Schedule (working name) is a simple PHP-based web app designed to be used as an easy way for members and staff to create, modify and remove bookings for the two meeting rooms currently residing in the Bloom Lab. It's split into two seperate components; an API for data minipulation and a web front-end.
 
@@ -15,6 +14,6 @@ Feel free to take a look at CONTRIBUTORS.md for some guidelines on contributing.
 
 ## License
 Copyright 2015 © [Bloom Labs, Inc.](http://bloom.org.au/) & [Damian J Worsdell](http://djw.net.au/)
-> Distribution, modification or use of this source code without<br />permission from Bloom Labs, Inc. is strictly forbidden under any<br />circumstance. By using it you agree to the terms of use and service.
+> Distribution, modification or use of this source code without<br />permission from Bloom Labs, Inc. It is strictly forbidden under any<br />circumstance. By using it you agree to the terms of use and service.
 
-<br />[![Bloom Labs logo](http://djw.net.au/bloom/logo-blue.png)](http://bloom.org.au/)
+<br />[![Bloom Labs logo](http://djw.net.au/bloom/Bloom-transparent-1520x813.png)](http://bloom.org.au/)
