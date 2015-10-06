@@ -19,10 +19,10 @@ To be written.
 
 ---
 
-## Contributing
+### Contributing
 Feel free to take a look at CONTRIBUTORS.md for some guidelines on contributing.
 
-## License
+### License
 Copyright 2015 © [Bloom Labs, Inc.](http://bloom.org.au/) & [Damian J Worsdell](http://djw.net.au/)
 > Distribution, modification or use of this source code without<br />permission from Bloom Labs, Inc. It is strictly forbidden under any<br />circumstance. By using it you agree to the terms of use and service.
 
