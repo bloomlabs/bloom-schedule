@@ -13,9 +13,9 @@
  */
 
 // Define our Namespace
-namespace Bloom\MeetingSpace\API;
-use Bloom\MeetingSpace\API\Model\Booking    as Booking;
-use Bloom\MeetingSpace\API\Model\Statistics as Statistics;
+namespace Bloom\Schedule\API;
+use Bloom\Schedule\API\Model\Booking    as Booking;
+use Bloom\Schedule\API\Model\Statistics as Statistics;
 
 // Auto-load the classes via Composer's PSR-4 autoloader
 require 'vendor/autoload.php';
@@ -45,6 +45,16 @@ define('URL', $req->getUrl());
 // Bookings
 $app->group('/booking', function () use ($app, $log) {
 
+    // Returns the details of all current and future bookings
+    $app->get("/all", function() use($app, $log) {
+        Booking::all($app);
+    });
+
+    // Returns the details of the next bookings for room number of :room
+    $app->get("/next/:room", function($room) use($app, $log) {
+        Booking::next($app, $room);
+    });
+    
     // Returns the details of the booking an id of :id
     $app->get("/:id", function($id) use($app, $log) {
         Booking::get($app, $id);

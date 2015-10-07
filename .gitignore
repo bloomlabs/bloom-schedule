@@ -1,2 +1,4 @@
 */vendor/
 */composer.lock
+*/data/logs
+api/application/config/config.php

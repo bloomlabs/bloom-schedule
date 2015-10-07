@@ -12,3 +12,75 @@
  * @copyright   Copyright (C) 2015, Damian Worsdell and Bloom Labs, Inc.
  */
 
+// Define our Namespace
+namespace Bloom\Schedule\API\Model;
+use Bloom\Schedule\API\Core\Database as Database;
+
+class Booking
+{
+    // Returns the details of all current and future bookings
+    public static function all($app) {
+        $Database = Database::getFactory()->getConnection();
+        
+        $sql = "SELECT *
+                FROM bookings
+                WHERE `booking_start` > CURRENT_TIMESTAMP";
+        $query = $Database->prepare($sql);
+        
+        $query->execute();
+        
+        $result = $query->fetchAll();
+        
+        echo json_encode(array(
+            "category" => "bookings",
+            "type" => "all",
+            "content" => $result
+        ));
+    }
+
+    // Returns the details of the next bookings in an array
+    public static function next($app, $room) {
+        $Database = Database::getFactory()->getConnection();
+        
+        $sql = "SELECT *
+                FROM bookings
+                WHERE `booking_start` > CURRENT_TIMESTAMP
+                AND   `booking_room`  = :room
+                LIMIT 1";
+        $query = $Database->prepare($sql);
+        
+        $room = filter_var(filter_var($room, FILTER_SANITIZE_NUMBER_INT), FILTER_VALIDATE_INT);
+        $query->execute(array(':room' => $room));
+        
+        $result = $query->fetch();
+        
+        echo json_encode(array(
+            "category" => "bookings",
+            "type" => "next",
+            "room" => $room,
+            "content" => $result
+        ));
+    }
+    
+    // Returns the details of the booking an id of :id
+    public static function get($app, $id) {
+        $Database = Database::getFactory()->getConnection();
+        
+        $sql = "SELECT *
+                  FROM bookings
+                 WHERE (booking_id = :id)
+                 LIMIT 1";
+        $query = $Database->prepare($sql);
+        
+        $id = filter_var(filter_var($id, FILTER_SANITIZE_NUMBER_INT), FILTER_VALIDATE_INT);
+        $query->execute(array(':id' => $id));
+        
+        $result = $query->fetch();
+        
+        echo json_encode(array(
+            "category" => "bookings",
+            "type" => "booking_details",
+            "content" => $result
+        ));
+    }
+}

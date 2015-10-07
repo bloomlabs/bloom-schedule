@@ -6,6 +6,15 @@ Bloom Schedule (working name) is a simple PHP-based web app designed to be used 
 ### Goals
 Eventually the goal is to have a screen either mounted on the wall or placed near the meeting rooms allowing Bloom Lab members and staff to identify current and scheduled meetings, their duration and if the room is free or not. Users can then proceed to a web page on their personal devices to create, modify or remove their own bookings.
 
+### The Idea
+Spilt into three seperate components (interface, dashboard & API) it is simple to either run the complete “system” on one device, or seperate it among different devices. For example the interface and API can run off a server, and the dashboard could run off a Raspberry Pi attached to a display screen.
+
+### Getting Started
+- Clone / fork / download this Git repo
+- Copy the component that you want to install to where you’d like it
+- `composer install` to grab all of the required frameworks
+- Configure the database settings and you’re ready to go!
+
 ---
 
 ## Web App
@@ -16,12 +25,35 @@ To be written.
 
 ## API
 The API is written as a Web 2.0 REST-style API.
+It is built upon the Slim PHP micro-framework to make life a little easier.
 
 ### Bookings
-`GET -> /booking/:id` - Return the details of the booking an id of :id
-```json
-Example with :id as 1
+`GET -> /booking/all` - Returns the details of all current and future bookings
+```mysql
+SELECT *
+  FROM bookings
+ WHERE `booking_start` > CURRENT_TIMESTAMP
+```
 
+`GET -> /booking/next/:room` - Returns the details of the next bookings for room number of :room
+```mysql
+SELECT *
+  FROM bookings
+ WHERE `booking_start` > CURRENT_TIMESTAMP
+   AND `booking_room`  = :room
+ LIMIT 1
+```
+
+`GET -> /booking/:id` - Return the details of the booking an id of :id
+```mysql
+SELECT *
+  FROM bookings
+ WHERE (booking_id = :id)
+ LIMIT 1
+```
+
+#### Example API response
+```json
 {
   "category": "booking",
   "type": "booking_details",
@@ -32,8 +64,6 @@ Example with :id as 1
   }
 }
 ```
-
-... more to come.
 
 ### Statistics
 `GET -> /statistics/bookings` - Return total amount of bookings managed by the system

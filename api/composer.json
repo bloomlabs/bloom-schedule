@@ -24,8 +24,8 @@
     },
     "autoload": {
         "psr-4": {
-			"\\Bloom\\MeetingSpace\\API\\Core": "application/core/",
-			"\\Bloom\\MeetingSpace\\API\\Model": "application/model/"
+			"Bloom\\Schedule\\API\\Core\\": "application/core/",
+			"Bloom\\Schedule\\API\\Model\\": "application/model/"
         }
     }
 }

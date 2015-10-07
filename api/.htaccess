@@ -1,0 +1,36 @@
+# /**
+# * Bloom Schedule
+# * API - v1
+# *
+# * Distribution, modification or use of this source code without
+# * authors permission is strictly forbidden under any circumstance.
+# * By using this software you agree to our terms of use and service.
+# *
+# * @abstract    Bloom Schedule - API
+# * @author      Damian Worsdell <damian@djw.net.au>
+# * @copyright   Copyright (C) 2015, Damian Worsdell and Bloom Labs, Inc.
+# */
+
+Options All -Indexes
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+<IfVersion < 2.4.4>
+	<IfModule filter_module>
+		FilterDeclare   COMPRESS
+		FilterProvider  COMPRESS  DEFLATE resp=Content-Type $application/json
+		FilterChain     COMPRESS
+		FilterProtocol  COMPRESS  DEFLATE change=yes;byteranges=no
+	</IfModule>
+</IfVersion>
+
+<IfVersion >= 2.4.4>
+	<IfModule filter_module>
+		FilterDeclare   COMPRESS
+		FilterProvider  COMPRESS  DEFLATE "%{Content_Type} = 'application/json'"
+		FilterChain     COMPRESS
+		FilterProtocol  COMPRESS  DEFLATE change=yes;byteranges=no
+	</IfModule>
+</IfVersion>

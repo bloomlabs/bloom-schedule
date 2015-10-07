@@ -12,9 +12,9 @@
  * @copyright   Copyright (C) 2015, Damian Worsdell and Bloom Labs, Inc.
  */
 
-// Define our namespace
-namespace Bloom\MeetingSpace\API\Model;
-use Bloom\MeetingSpace\API\Database as Database;
+// Define our Namespace
+namespace Bloom\Schedule\API\Model;
+use Bloom\Schedule\API\Database as Database;
 
 class Statistics
 {

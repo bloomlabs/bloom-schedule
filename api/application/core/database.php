@@ -15,7 +15,7 @@
  */
 
 // Define our Namespace
-namespace Bloom\MeetingSpace\API\Core;
+namespace Bloom\Schedule\API\Core;
 
 class Database
 {
