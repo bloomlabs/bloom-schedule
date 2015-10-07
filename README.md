@@ -29,14 +29,14 @@ It is built upon the Slim PHP micro-framework to make life a little easier.
 
 ### Bookings
 `GET -> /booking/all` - Returns the details of all current and future bookings
-```mysql
+```sql
 SELECT *
   FROM bookings
  WHERE `booking_start` > CURRENT_TIMESTAMP
 ```
 
 `GET -> /booking/next/:room` - Returns the details of the next bookings for room number of :room
-```mysql
+```sql
 SELECT *
   FROM bookings
  WHERE `booking_start` > CURRENT_TIMESTAMP
@@ -45,7 +45,7 @@ SELECT *
 ```
 
 `GET -> /booking/:id` - Return the details of the booking an id of :id
-```mysql
+```sql
 SELECT *
   FROM bookings
  WHERE (booking_id = :id)
