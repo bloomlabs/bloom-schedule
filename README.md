@@ -7,7 +7,7 @@ Bloom Schedule (working name) is a simple PHP-based web app designed to be used 
 Eventually the goal is to have a screen either mounted on the wall or placed near the meeting rooms allowing Bloom Lab members and staff to identify current and scheduled meetings, their duration and if the room is free or not. Users can then proceed to a web page on their personal devices to create, modify or remove their own bookings.
 
 ### The Idea
-Spilt into three seperate components (interface, dashboard & API) it is simple to either run the complete “system” on one device, or seperate it among different devices. For example the interface and API can run off a server, and the dashboard could run off a Raspberry Pi attached to a display screen.
+Spilt into three seperate components (interface, dashboard & API) it is simple to either run the complete “system” on one device, or seperate it among different devices. For example the interface and API can run off a server, and the dashboard could run off a Raspberry Pi attached to a display.
 
 ### Getting Started
 - Clone / fork / download this Git repo
@@ -24,8 +24,7 @@ To be written.
 To be written.
 
 ## API
-The API is written as a Web 2.0 REST-style API.
-It is built upon the Slim PHP micro-framework to make life a little easier.
+The API is built upon the Slim PHP micro-framework using the standard REST design principle.
 
 ### Bookings
 `GET -> /booking/all` - Returns the details of all current and future bookings
@@ -52,19 +51,6 @@ SELECT *
  LIMIT 1
 ```
 
-#### Example API response
-```json
-{
-  "category": "booking",
-  "type": "booking_details",
-  "content": {
-	"booking_id": "1",
-	"booking_title": "My cool booking!",
-	"booking_author": "John Appleseed"
-  }
-}
-```
-
 ### Statistics
 `GET -> /statistics/bookings` - Return total amount of bookings managed by the system
 ```json
@@ -81,6 +67,19 @@ SELECT *
 
 ### Other API details
 
+#### Example API response
+```json
+{
+  "category": "booking",
+  "type": "booking_details",
+  "content": {
+	"booking_id": "1",
+	"booking_title": "My cool booking!",
+	"booking_author": "John Appleseed"
+  }
+}
+```
+
 #### Database connection
 We've formed a database connection in `/core/database.php` using the newer [PDO methodology](http://php.net/manual/en/book.pdo.php). It's mostly self-explanatory in the classes that have already been created, but if you'd like to explore further into database queries feel free to research-up!
 
@@ -96,16 +95,16 @@ $query = $database->prepare($sql);
 // Execute our query
 $query->execute();
 
-// Fetch the result as an array
-$query->fetchAll()
+// Fetch the result as an array & return
+return $query->fetchAll()
 ```
 
 ---
 
-### Contributing
+## Contributing
 Feel free to take a look at CONTRIBUTORS.md for some guidelines on contributing.
 
-### License
+## License
 Copyright 2015 © [Bloom Labs, Inc.](http://bloom.org.au/) & [Damian J Worsdell](http://djw.net.au/)
 > Distribution, modification or use of this source code without<br />permission from Bloom Labs, Inc. It is strictly forbidden under any<br />circumstance. By using it you agree to the terms of use and service.
 
