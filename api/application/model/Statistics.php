@@ -14,15 +14,15 @@
 
 // Define our Namespace
 namespace Bloom\Schedule\API\Model;
-use Bloom\Schedule\API\Database as Database;
+use Bloom\Schedule\API\Core\Database as Database;
 
 class Statistics
 {
     // Return total amount of bookings managed by the system
-    public static function bookings() {
+    public static function bookings($app) {
         $database = Database::getFactory()->getConnection();
 
-        $sql = "SELECT * FROM bookings";
+        $sql = "SELECT * FROM `bookings`";
         $query = $database->prepare($sql);
 
         $query->execute();
@@ -30,7 +30,7 @@ class Statistics
         echo json_encode(array(
             "category" => "statistics",
             "type" => "bookings",
-            "content" => $query->rowCount()
+            "total" => $query->rowCount()
         ));
     }
 }

@@ -23,8 +23,8 @@ class Booking
         $Database = Database::getFactory()->getConnection();
         
         $sql = "SELECT *
-                FROM bookings
-                WHERE `booking_start` > CURRENT_TIMESTAMP";
+                FROM   bookings
+                WHERE  ` booking_start ` > CURRENT_TIMESTAMP";
         $query = $Database->prepare($sql);
         
         $query->execute();
@@ -43,10 +43,10 @@ class Booking
         $Database = Database::getFactory()->getConnection();
         
         $sql = "SELECT *
-                FROM bookings
-                WHERE `booking_start` > CURRENT_TIMESTAMP
-                AND   `booking_room`  = :room
-                LIMIT 1";
+                FROM   bookings
+                WHERE  `booking_start` > CURRENT_TIMESTAMP
+                       AND `booking_room` = :room
+                LIMIT  1";
         $query = $Database->prepare($sql);
         
         $room = filter_var(filter_var($room, FILTER_SANITIZE_NUMBER_INT), FILTER_VALIDATE_INT);
@@ -67,9 +67,9 @@ class Booking
         $Database = Database::getFactory()->getConnection();
         
         $sql = "SELECT *
-                  FROM bookings
-                 WHERE (booking_id = :id)
-                 LIMIT 1";
+                FROM   bookings
+                WHERE  ( booking_id = :id )
+                LIMIT  1";
         $query = $Database->prepare($sql);
         
         $id = filter_var(filter_var($id, FILTER_SANITIZE_NUMBER_INT), FILTER_VALIDATE_INT);
@@ -81,6 +81,58 @@ class Booking
             "category" => "bookings",
             "type" => "booking_details",
             "content" => $result
+        ));
+    }
+    
+    // Create booking
+    public static function create($app, $details) {
+        $Database = Database::getFactory()->getConnection();
+        
+        $sql = "INSERT INTO `bookings` (
+                            `booking_id`,
+                            `booking_title`,
+                            `booking_room`,
+                            `booking_creator`,
+                            `booking_start`,
+                            `booking_end`,
+                            `booking_notes`,
+                            `booking_attendees`,
+                            `booking_guests`)
+                VALUES      (NULL,
+                             ':title',
+                             ':room',
+                             ':creator',
+                             ':from',
+                             ':to',
+                             ':notes',
+                             ':attendees',
+                             ':guests');";
+        $query = $Database->prepare($sql);
+        
+        $title      = $details['title'];
+        $room       = $details['room'];
+        $creator    = $details['creator'];
+        $from       = $details['from'];
+        $to         = $details['to'];
+        $notes      = $details['notes'];
+        $attendees  = $details['attendees'];
+        $guests     = $details['guests'];
+        
+        $query->execute(array(
+        	':title'	 => $title,
+        	':room' 	 => $room,
+        	':creator' 	 => $creator,
+        	':from' 	 => $from,
+        	':to' 		 => $to,
+        	':notes' 	 => $notes,
+        	':attendees' => $attendees,
+        	':guests' 	 => $guests
+        ));
+        
+        echo json_encode(array(
+        	"category" => "bookings",
+        	"type" => "booking_create",
+        	"success" => true
         ));
     }
 }
