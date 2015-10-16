@@ -60,6 +60,11 @@ $app->group('/booking', function () use ($app, $log) {
         Booking::get($app, $id);
     });
 
+    // Create booking & return success or failure
+    $app->post("/create", function($title, $room, $creator, $from, $to, $notes, $attendees, $guests) use($app, $log) {
+        Booking::create($app, $details);
+    });
+
 });
 
 // Statistics

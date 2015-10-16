@@ -24,7 +24,7 @@ class Booking
         
         $sql = "SELECT *
                 FROM   bookings
-                WHERE  ` booking_start ` > CURRENT_TIMESTAMP";
+                WHERE  `booking_start` > CURRENT_TIMESTAMP";
         $query = $Database->prepare($sql);
         
         $query->execute();
@@ -84,7 +84,7 @@ class Booking
         ));
     }
     
-    // Create booking
+    // Create booking & return success or failure
     public static function create($app, $details) {
         $Database = Database::getFactory()->getConnection();
         
@@ -98,7 +98,7 @@ class Booking
                             `booking_notes`,
                             `booking_attendees`,
                             `booking_guests`)
-                VALUES      (NULL,
+                VALUES      ( NULL,
                              ':title',
                              ':room',
                              ':creator',
@@ -106,7 +106,7 @@ class Booking
                              ':to',
                              ':notes',
                              ':attendees',
-                             ':guests');";
+                             ':guests' );";
         $query = $Database->prepare($sql);
         
         $title      = $details['title'];
@@ -129,6 +129,7 @@ class Booking
         	':guests' 	 => $guests
         ));
         
+        // TODO: If success then true, else false...
         echo json_encode(array(
         	"category" => "bookings",
         	"type" => "booking_create",

@@ -5,7 +5,7 @@
     <databaseInfo>
         <version>134481920</version>
         <UUID>DE5E78B7-96CE-4176-9AA7-6DFBDFDE3DE6</UUID>
-        <nextObjectID>118</nextObjectID>
+        <nextObjectID>120</nextObjectID>
         <metadata>
             <plist version="1.0">
                 <dict>
@@ -171,7 +171,7 @@
         <attribute name="order" type="int64">1</attribute>
         <attribute name="name" type="string">Bookings</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>
-        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM" idrefs="z114 z109 z112"></relationship>
+        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM" idrefs="z120 z114 z112 z109"></relationship>
         <relationship name="bodyparameters" type="0/0" destination="LMKEYVALUE"></relationship>
         <relationship name="headers" type="0/0" destination="LMKEYVALUE"></relationship>
         <relationship name="urlparameters" type="0/0" destination="LMKEYVALUE"></relationship>
@@ -235,5 +235,31 @@
         <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
         <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
         <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z116"></relationship>
+    </object>
+    <object type="LMKEYVALUE" id="z119">
+        <attribute name="value" type="string"></attribute>
+        <attribute name="order" type="int64">0</attribute>
+        <attribute name="name" type="string"></attribute>
+        <attribute name="enabled" type="bool">1</attribute>
+        <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z120"></relationship>
+    </object>
+    <object type="LMREQUEST" id="z120">
+        <attribute name="body" type="string">[{"data":{"json":"{\\"title\\":\\"Cool title\\",\\"room\\":\\"1\\",\\"creator\\":\\"[{\\\\\\"data\\\\\\":{\\\\\\"arrayType\\\\\\":\\\\\\"maleNames\\\\\\"},\\\\\\"identifier\\\\\\":\\\\\\"com.commanigy.PawExtensions.NameRandomizerDynamicValue\\\\\\"},\\\\\\" \\\\\\",{\\\\\\"data\\\\\\":{\\\\\\"arrayType\\\\\\":\\\\\\"lastNames\\\\\\"},\\\\\\"identifier\\\\\\":\\\\\\"com.commanigy.PawExtensions.NameRandomizerDynamicValue\\\\\\"}]\\",\\"start\\":\\"[{\\\\\\"data\\\\\\":{\\\\\\"format\\\\\\":1,\\\\\\"customFormat\\\\\\":[],\\\\\\"now\\\\\\":true,\\\\\\"useTSeparator\\\\\\":1,\\\\\\"date\\\\\\":1444362280.429945,\\\\\\"delta\\\\\\":0,\\\\\\"useZForUTC\\\\\\":0},\\\\\\"identifier\\\\\\":\\\\\\"com.luckymarmot.TimestampDynamicValue\\\\\\"}]\\",\\"end\\":\\"[{\\\\\\"data\\\\\\":{\\\\\\"format\\\\\\":1,\\\\\\"customFormat\\\\\\":[],\\\\\\"now\\\\\\":true,\\\\\\"useTSeparator\\\\\\":1,\\\\\\"date\\\\\\":1444362280.429945,\\\\\\"delta\\\\\\":0,\\\\\\"useZForUTC\\\\\\":0},\\\\\\"identifier\\\\\\":\\\\\\"com.luckymarmot.TimestampDynamicValue\\\\\\"}]\\",\\"notes\\":\\"Notes\\",\\"attendees\\":\\"0\\",\\"guests\\":\\"0\\"}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
+        <attribute name="uuid" type="string">1BF4A616-A0A0-486D-9C10-641162681B9F</attribute>
+        <attribute name="url" type="string">http://bloom-api.dev/booking/create</attribute>
+        <attribute name="storecookies" type="bool">1</attribute>
+        <attribute name="sendcookies" type="bool">1</attribute>
+        <attribute name="redirectmethod" type="bool">0</attribute>
+        <attribute name="redirectauthorization" type="bool">0</attribute>
+        <attribute name="method" type="string">POST</attribute>
+        <attribute name="followredirects" type="bool">0</attribute>
+        <attribute name="order" type="int64">3</attribute>
+        <attribute name="name" type="string">Get booking details</attribute>
+        <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z113"></relationship>
+        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z119"></relationship>
     </object>
 </database>
